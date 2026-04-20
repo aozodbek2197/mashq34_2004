@@ -1,0 +1,19 @@
+<ul id="sortable" style="list-style:none; padding:0;">
+    <li draggable="true" ondragstart="dragStart(event)" style="padding:15px; background:#eee; margin:5px;">Element 1</li>
+    <li draggable="true" ondragstart="dragStart(event)" style="padding:15px; background:#eee; margin:5px;">Element 2</li>
+    <li draggable="true" ondragstart="dragStart(event)" style="padding:15px; background:#eee; margin:5px;">Element 3</li>
+</ul>
+
+<script>
+    let dragged;
+    function dragStart(e) {
+        dragged = e.target;
+    }
+    document.getElementById('sortable').addEventListener('dragover', e => e.preventDefault());
+    document.getElementById('sortable').addEventListener('drop', e => {
+        e.preventDefault();
+        if (e.target.tagName === 'LI') {
+            e.target.parentNode.insertBefore(dragged, e.target.nextSibling || e.target);
+        }
+    });
+</script>
